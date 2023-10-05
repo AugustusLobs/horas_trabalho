@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Salário</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <h3>Calculadora de Salário</h3>
+                <div class="form-group">
+                    <input type="number" class="form-control" id="valor-hora" placeholder="Valor por hora">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" id="horas-trabalhadas" placeholder="Horas trabalhadas no mês">
+                </div>
+                <button onclick="calcular()" class="btn btn-primary">Calcular</button>
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Salário Bruto</td>
+                            <td id="salario-bruto"></td>
+                        </tr>
+                        <tr>
+                            <td>INSS (8%)</td>
+                            <td id="inss"></td>
+                        </tr>
+                        <tr>
+                            <td>Sindicato (5%)</td>
+                            <td id="sindicato"></td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Salário Líquido</td>
+                            <td id="salario-liquido"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        function calcular() {
+            var valorHora = document.getElementById('valor-hora').value;
+            var horasTrabalhadas = document.getElementById('horas-trabalhadas').value;
+
+            var salarioBruto = valorHora * horasTrabalhadas;
+            var inss = salarioBruto * 0.08;
+            var sindicato = salarioBruto * 0.05;
+            var salarioLiquido = salarioBruto - inss - sindicato;
+
+            document.getElementById('salario-bruto').innerHTML = "R$ " + salarioBruto.toFixed(2);
+            document.getElementById('inss').innerHTML = "R$ " + inss.toFixed(2);
+            document.getElementById('sindicato').innerHTML = "R$ " + sindicato.toFixed(2);
+            document.getElementById('salario-liquido').innerHTML = "R$ " + salarioLiquido.toFixed(2);
+        }
+    </script>
+
+</body>
+
+</html>
+
